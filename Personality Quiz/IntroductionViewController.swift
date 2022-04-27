@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  IntroductionViewController.swift
 //  Personality Quiz
 //
 //  Created by mac on 27.04.2022.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class IntroductionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
     }
 
 
