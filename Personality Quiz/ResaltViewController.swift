@@ -8,22 +8,40 @@
 import UIKit
 
 class ResaltViewController: UIViewController {
-
+    
+ 
+    // IB  outlet
+    @IBOutlet var resaltAnswerLable: UILabel!
+    @IBOutlet var resaltDefinitionLable: UILabel!
+    
+    // Public properties
+    var responses: [Answer]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        navigationItem.hidesBackButton = true
+        updateResult()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    private func updateResult() {
+        var frequencyOfAnimals: [AnimalType: Int] = [:]
+        let animals = responses.map { $0.type }
+        
+        for animal in animals {
+            frequencyOfAnimals[animal] = (frequencyOfAnimals[animal] ?? 0) + 1
+        }
+        
+        let soertedFrequencyOfAnimals = frequencyOfAnimals.sorted { $0.value > $1.value}
+        
+        guard let mostFrequencyOfAnimals = soertedFrequencyOfAnimals.first?.key else { return }
+        updateUI(with: mostFrequencyOfAnimals)
+        
     }
-    */
-
+    
+    private func updateUI(with animal: AnimalType) {
+        resaltAnswerLable.text = "Вы - \(animal.rawValue)"
+        resaltDefinitionLable.text = "\(animal.difinition)"
+    }
 }
+
